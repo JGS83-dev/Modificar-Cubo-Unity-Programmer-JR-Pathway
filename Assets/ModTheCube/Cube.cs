@@ -11,8 +11,8 @@ public class Cube : MonoBehaviour
     
     void Start()
     {
-        randomY = Random.Range(0.0f, 3.0f);
-        randomZ = Random.Range(0.0f, 3.0f);
+        randomY = Random.Range(0.0f, 1.0f);
+        randomZ = Random.Range(0.0f, 1.0f);
         int texturaId = Random.Range(0,texturas.Length);
         transform.position = new Vector3(3, 4, 1);
         transform.localScale = Vector3.one * 4f;
@@ -27,5 +27,13 @@ public class Cube : MonoBehaviour
     void Update()
     {
         transform.Rotate(10.0f * Time.deltaTime, randomY, randomZ);
+        CambiarColor();
+    }
+
+    IEnumerator CambiarColor()
+    {
+        Material material = Renderer.material;
+        material.color = new Color(0.5f, Random.Range(0.0f, 2.0f), 0.3f, Random.Range(0.0f, 3.0f));
+        yield return new WaitForSeconds(10);
     }
 }
